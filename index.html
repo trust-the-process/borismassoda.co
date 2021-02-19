@@ -71,7 +71,7 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" action="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJNtdwZXRGtCGHMPgCHtrGfjlSnPkMxXSFNxQVtDmzRwhPkZtDdtWFGGPRNnXtKHhlvPLbB">
+								<form method="" action="javascript:sendMail()">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
@@ -87,7 +87,7 @@
 										</div>
 									</div>
 									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="submit" value="Envoyer" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
@@ -112,6 +112,30 @@
 			<div id="bg"></div>
 
 		<!-- Scripts -->
+			<script>
+				function sendMail() {
+					//Tester les donnees
+					if (document.getElementById("email").value.length==0) {
+					    alert("Saisir l'adresse du destinataire !!!");
+					    return;
+					}
+					if (document.getElementById("name").value.length==0) {
+					    alert("Saisir le titre !!!");
+					    return;
+					}
+					if (document.getElementById("message").value.length==0) {
+					    alert("Ecrire le message !!!");
+					    return;
+					}
+					//Encoder l'url mailto-->
+					var url="mailto:"+encodeURIComponent(document.getElementById("email").value)
+					    +"?subject="+encodeURIComponent(document.getElementById("name").value)
+					    +"&body="+encodeURIComponent(document.getElementById("message").value);
+					
+					//Ouvrir client messagerie-->
+					document.location=url;
+				    }
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
